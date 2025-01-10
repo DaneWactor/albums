@@ -19,7 +19,7 @@ interface IImage {
 	height: number;
 }
 
-export default function Home() {
+const Home = () => {
 	const [query, setQuery] = useState<string>("Guitar");
 	const [albums, setAlbums] = useState([]);
 	const [images, setImages] = useState<IImage[]>([]);
@@ -79,7 +79,7 @@ export default function Home() {
 				</div>
 
 				<div className="flex flex-row">
-					<div className="flex flex-wrap max-w-[260px] gap-4 p-4 border-slate-200 border-r h-screen overflow-y-auto">
+					<div className="flex flex-wrap max-w-[240px] gap-4 p-4 border-slate-200 border-r h-screen overflow-y-auto">
 						{albums.map((album: IAlbum, idx: number) => (
 							<button
 								key={"album-" + idx}
@@ -88,7 +88,7 @@ export default function Home() {
 											flex flex-col items-center justify-center p-4 
 											bg-slate-100 rounded-lg shadow-md 
 											hover:bg-slate-200 transition-colors
-											last:mb-20"
+											last:mb-48"
 							>
 								<span className="text-3xl mb-2">&#128449;</span>
 								<span className="text-center text-sm font-medium truncate max-w-full">
@@ -104,7 +104,9 @@ export default function Home() {
 								{images.map((image: IImage) => (
 									<Link 
 										key={image.id}
-										href={`/image/?albumHash=${selectedAlbum}&imageHash=${image.id}`}>
+										href={`/image/?albumHash=${selectedAlbum}&imageHash=${image.id}`}
+										target='_blank'
+										>
 										<Image
 											
 											src={image.link}
@@ -127,3 +129,5 @@ export default function Home() {
 			</div>
 			);
 }
+
+export default Home; 

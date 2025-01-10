@@ -2,6 +2,12 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+After running install, park an .env.local file in the root of the project 
+
+```bash
+NEXT_PUBLIC_IMGUR_CLIENT_ID=YOUR_CLIENT_ID_HERE
+```
+
 First, run the development server:
 
 ```bash
@@ -16,21 +22,24 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You can also open [127.0.0.1:3000](http://127.0.0.1:3000) with your browser to see the result if you find that your browser is lying to you.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+I chose Next.js for this project to leverage some of the best parts - namely, the app routing system and server actions. 
 
-## Learn More
+## Routing 
 
-To learn more about Next.js, take a look at the following resources:
+In a real world scenario, I would have wired up the Next.js router to handle dynamic routing for two parameters as required by the API endpoint. That structure would have looked like this... 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+ app/image/[albumHash]/[imageHash]/page.tsx 
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+... but for brevity, I am using static routes with the additional parameters as query parameters.
 
-## Deploy on Vercel
+## Server Actions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If the brochure for Next.js undersells anything, its server actions. Sever actions never come to the surface of the client meaning as long as error boundaries are implemented, you don't have to worry about them showing up in the client. This is an excellent design when you need to hide end points from the client. Another reason I like them is because it provides a way to organize communication logic between the client and server in one central location.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+I also installed Axios to make HTTP requests to the Imgur API as this eliminates the second step of parsing the JSON response from the API that is usually associated with using fetch. 
+
+

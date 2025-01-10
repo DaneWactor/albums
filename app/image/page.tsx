@@ -21,7 +21,7 @@ interface ImgurImage {
     gifv?: string;
 }
 
-export default function ImagePage() {
+const ImagePage = () => {
     const [image, setImage] = useState<ImgurImage | null>(null);
     const searchParams = useSearchParams();
     
@@ -47,20 +47,18 @@ export default function ImagePage() {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-black">
-            <div className="max-w-full max-h-screen">
+            <div className="fixed inset-0 w-full h-full flex items-center justify-center overflow-hidden">
                 <Image 
                     src={image.link}
                     alt={image.title || 'Image'}
                     width={image.width}
                     height={image.height}
-                    className="object-contain"
+                    className="max-w-full max-h-full object-contain object-center"
                 />
-                {image.title && (
-                    <div className="text-white text-center mt-4">
-                        {image.title}
-                    </div>
-                )}
+               
             </div>
         </div>
     );
 }
+
+export default ImagePage;
