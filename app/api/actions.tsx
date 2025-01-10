@@ -2,6 +2,7 @@ import axios from "axios";
 
 export async function search(query: string) {
 
+    // in a real world environemnt, I would set up an error boundary to catch this error
     if (query === "") {
         return;
     }
@@ -15,12 +16,14 @@ export async function search(query: string) {
 
         return response.data;
     } catch (error) {
+        // in a real world environemnt, I would set up an error boundary to catch this error also
         console.log(error);
     }
 };
 
 export async function getImages(albumHash: string) {
 
+    // and this one...
     if (albumHash === "") {
         return;
     }
@@ -34,6 +37,7 @@ export async function getImages(albumHash: string) {
 
         return response.data.data;
     } catch (error) {
+        // and this one...
         console.log(error);
     }
 };
@@ -49,6 +53,7 @@ export async function getImage(albumHash: string, imageHash: string) {
 
         return response.data.data;
     } catch (error) {
+        // and this one...
         console.log(error);
     }
     
